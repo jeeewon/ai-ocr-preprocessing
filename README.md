@@ -35,6 +35,7 @@ preprocess_final_npm/
 │           └── ResultCard.jsx
 │
 ├── docs/                # 관련 발표자료·문서
+│   └── images/          # README 데모 스크린샷
 ├── weights/             # YOLOv8s-seg 가중치 (git 미포함, 아래 참고)
 └── results/             # 파이프라인 실행 결과물 (git 미포함, 실행 시 자동 생성)
 ```
@@ -199,6 +200,21 @@ npm run build   # ../static/ 에 빌드 결과물 생성
 - 각 카드: `Output` / `Layout Analysis` 탭 전환 가능
 - Layout Analysis 탭에서 bbox 클릭 → 해당 영역 crop 라이트박스
 
+![문서 소스 분류 및 파이프라인 실행 결과](docs/images/demo_detection.jpg)
+*카메라로 촬영한 문서를 업로드하면 소스(CAMERA)와 방향(0°)을 자동 판별해 결과를 반환한다.*
+
+### 합본(다중 페이지) 분리
+스캔 이미지에 여러 페이지가 이어져 있으면 자동으로 페이지 단위로 분리해 각각 처리한다.
+
+![합본 이미지 분리 결과](docs/images/demo_split.jpg)
+*3개 페이지가 이어진 합본 스캔본을 업로드하면 페이지별로 분리되어 각각 결과가 표시된다.*
+
+### Layout Analysis
+Layout Analysis를 켜면 header/table/text/image/figure_title 등 영역별 bbox와 confidence가 함께 표시된다.
+
+![레이아웃 분석 결과](docs/images/demo_layout_analysis.jpg)
+*페이지별로 header, table, text 등 레이아웃 영역이 라벨링되어 표시된다.*
+
 ### 소스 분류 수동 변경
 - 결과 헤더의 드롭다운 (SCAN / CAMERA / SCREENSHOT) 변경 시 즉시 재실행
 - 분류기가 오분류했을 때 수동 교정 용도
@@ -207,6 +223,9 @@ npm run build   # ../static/ 에 빌드 결과물 생성
 - 결과 확인 후 **Enable Search** 클릭 → 전체 페이지 PaddleOCR 실행
 - 검색창에 텍스트 입력 → 모든 페이지에서 동시 하이라이트
 - X 버튼은 검색어만 초기화 (OCR 재실행 불필요)
+
+![텍스트 검색 결과](docs/images/demo_search.jpg)
+*"자동차" 검색 시 문서 내 모든 매칭 텍스트(10 matches)가 노란색으로 하이라이트된다.*
 
 ---
 
